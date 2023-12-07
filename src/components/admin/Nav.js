@@ -7,7 +7,6 @@ import { logout } from '@/api/auth';
 import { getApiPlayer } from '@/api/user';
 import { useUserContext } from '@/hooks/UserContext';
 import Image from 'next/image';
-import useAuth from '@/hooks/useAuth';
 import NoImageProfile from '../../../public/png/no-profile.png';
 
 
@@ -23,13 +22,12 @@ export default function Nav() {
     const router = useRouter();
     const { pathname } = router;
 
-    //const token = jwtDecode(localStorage.getItem(ACCESS_TOKEN));
-    const { user } = useAuth();
+    const token = jwtDecode(localStorage.getItem(ACCESS_TOKEN));
 
     useEffect(() => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
         (async () => {
-            const data = await getApiPlayer(user.id);
+            const data = await getApiPlayer(token.id);
             setPlayer(data);
         })()   
         // eslint-disable-next-line react-hooks/exhaustive-deps         
