@@ -10,7 +10,7 @@ export default function Login() {
 
     useEffect(() => {
         if (getAccToken()) {
-            router.push('/admin/dashboard');
+            router.push('/admin/dashboard.html');
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
